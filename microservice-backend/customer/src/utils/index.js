@@ -9,6 +9,7 @@ const {
   MSG_QUEUE_URL,
 } = require("../config");
 
+console.log("test 3");
 //Utility functions
 module.exports.GenerateSalt = async () => {
   return await bcrypt.genSalt();
@@ -72,7 +73,7 @@ module.exports.PublishMessage = (channel, service, msg) => {
   channel.publish(EXCHANGE_NAME, service, Buffer.from(msg));
   console.log("Sent: ", msg);
 };
-
+console.log("test 4");
 module.exports.SubscribeMessage = async (channel, service) => {
   await channel.assertExchange(EXCHANGE_NAME, "direct", { durable: true });
   const q = await channel.assertQueue("", { exclusive: true });
@@ -94,3 +95,4 @@ module.exports.SubscribeMessage = async (channel, service) => {
     }
   );
 };
+console.log("test 5");
